@@ -62,14 +62,17 @@ def preprocess_image(image_path):
     return image
 
 
-image_path = 'test_images/5.png'
-processed_image = preprocess_image(image_path)
-processed_image = processed_image.unsqueeze(0)  # Add batch dimension
-model.eval()
-with torch.no_grad():
-    new_prediction = model(processed_image)
+def process_image(image_path):
+    processed_image = preprocess_image(image_path)
+    processed_image = processed_image.unsqueeze(0)  # Add batch dimension
+    model.eval()
+    with torch.no_grad():
+        new_prediction = model(processed_image)
 
-print(new_prediction.argmax().item())
+    return new_prediction.argmax().item()
+
+
+print(process_image('test_images/div.png'))
 
 '''
     10 - addition

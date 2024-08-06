@@ -1,4 +1,124 @@
 body {
-    background-color: #1F3864;
+    height: 100%;
+    display: flex;
     color: white;
+    font-family: "Karla", sans-serif;
+    background-color: #16314f;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    padding: 30px;
+}
+
+/*========================================================*/
+
+.header {
+    grid-area: header;
+    font-size: 40px;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+    margin: 0 10px 5px;
+}
+
+/*========================================================*/
+
+.expression {
+    grid-area: expression;
+    background-color: white;
+    font-size: 30px;
+    text-align: left;
+    border-radius: 10px 10px 0 0;
+    margin: 0 10px;
+    color: black;
+    padding: 10px 15px;
+    height: 50px;
+}
+
+.answer {
+    grid-area: answer;
+    background-color: white;
+    font-size: 30px;
+    text-align: right;
+    border-radius: 0 0 10px 10px;
+    margin: 0 10px;
+    color: black;
+    padding: 10px 15px;
+    height: 50px;
+}
+
+/*========================================================*/
+
+.input {
+    grid-area: input;
+    border-radius: 10px;
+    margin: 20px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.input > canvas {
+    background-color: white;
+    height: 80%;
+    /*width: 400px;*/
+    width: 90%;
+    border-radius: 10px;
+}
+
+/*========================================================*/
+
+.button {
+    text-align: center;
+    background-color: grey;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 30px;
+    transition: 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.button:hover {
+    background-color: #c40000;
+}
+
+.undo {
+    grid-area: undo;
+    margin-top: 20px;
+}
+
+.clear {
+    grid-area: clear;
+}
+
+.solve {
+    grid-area: solve;
+    margin-bottom: 20px;
+}
+
+/*========================================================*/
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    'header         header          header'
+    'expression     expression      expression'
+    'answer         answer          answer'
+    'input          input           undo'
+    'input          input           clear'
+    'input          input           solve';
+    border-radius: 20px;
+    border: 2px solid white;
+    padding: 5px;
+    background-color: #0d1f3d;
+    width: 45%;
+}
+
+@media screen and (max-width: 900px) {
+    .grid-container {
+        width: 90%;
+    }
 }
