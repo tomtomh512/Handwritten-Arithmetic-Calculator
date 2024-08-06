@@ -60,9 +60,8 @@ body {
 
 .input > canvas {
     background-color: white;
-    height: 80%;
-    /*width: 400px;*/
-    width: 90%;
+    /*height: 80%;*/
+    /*width: 90%;*/
     border-radius: 10px;
 }
 
@@ -79,6 +78,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 60px;
+    user-select: none;
 }
 
 .button:hover {
@@ -104,12 +104,12 @@ body {
 .grid-container {
     display: grid;
     grid-template-areas:
-    'header         header          header'
-    'expression     expression      expression'
-    'answer         answer          answer'
-    'input          input           undo'
-    'input          input           clear'
-    'input          input           solve';
+    'header            header'
+    'expression      expression'
+    'answer          answer'
+    'input           undo'
+    'input           clear'
+    'input           solve';
     border-radius: 20px;
     border: 2px solid white;
     padding: 5px;
