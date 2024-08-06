@@ -23,7 +23,7 @@ class ConvolutionalNetwork(nn.Module):
         self.fc1 = nn.Linear(256 * 6 * 6, 512)  # 256 * 6 * 6 -> 512
         self.fc2 = nn.Linear(512, 256)
         self.fc3 = nn.Linear(256, 128)
-        self.fc4 = nn.Linear(128, 19)
+        self.fc4 = nn.Linear(128, 16)
 
     def forward(self, X):
         X = F.relu(self.conv1(X))
@@ -46,7 +46,7 @@ class ConvolutionalNetwork(nn.Module):
 
 
 model = ConvolutionalNetwork()
-model.load_state_dict(torch.load('math_model_1.pt'))
+model.load_state_dict(torch.load('math_model_2.pt'))
 model.eval()
 
 
@@ -62,7 +62,7 @@ def preprocess_image(image_path):
     return image
 
 
-image_path = 'test_images/8.png'
+image_path = 'test_images/5.png'
 processed_image = preprocess_image(image_path)
 processed_image = processed_image.unsqueeze(0)  # Add batch dimension
 model.eval()
@@ -70,3 +70,12 @@ with torch.no_grad():
     new_prediction = model(processed_image)
 
 print(new_prediction.argmax().item())
+
+'''
+    10 - addition
+    11 - decimal
+    12 - division
+    13 - equal
+    14 - multiplication
+    15 - subtraction
+'''
