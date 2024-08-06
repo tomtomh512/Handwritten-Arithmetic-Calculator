@@ -62,7 +62,7 @@ def preprocess_image(image_path):
     return image
 
 
-image_path = '5.png'
+image_path = 'test_images/8.png'
 processed_image = preprocess_image(image_path)
 processed_image = processed_image.unsqueeze(0)  # Add batch dimension
 model.eval()
