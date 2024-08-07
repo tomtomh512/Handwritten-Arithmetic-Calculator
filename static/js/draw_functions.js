@@ -10,6 +10,9 @@ var y;
 var colorLine = "black";
 var timeout;
 
+paper.fillStyle = "#ffffff";
+paper.fillRect(0, 0, square.width, square.height);
+
 square.addEventListener("mousedown", startDrawing);
 square.addEventListener("mousemove", drawLine);
 square.addEventListener("mouseup", stopDrawing);
@@ -53,11 +56,27 @@ function drawing_line(color, x_start, y_start, x_end, y_end, board) {
 function clearCanvas() {
     // Clear the entire canvas by setting the width and height to the same as the canvas element's width and height
     paper.clearRect(0, 0, square.width, square.height);
+    paper.fillStyle = "#ffffff";
+    paper.fillRect(0, 0, square.width, square.height);
 }
 
 function generateImage() {
-    var url = square.toDataURL('image/png');
+    var url = square.toDataURL('image/jpg');
+
+    fetch('/upload', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            imageBase64: url,
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+
     clearCanvas();
-    appendExpression('6 ')
     showExpression();
 }

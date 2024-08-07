@@ -15,11 +15,9 @@ function undo() {
 }
 
 function clearExpression() {
-    expression = '';
     showExpression();
 }
 
 function solve() {
-    expression += '5 ';
-    showExpression();
+
 }

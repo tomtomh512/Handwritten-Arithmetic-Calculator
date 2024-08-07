@@ -69,16 +69,11 @@ def process_image(image_path):
     with torch.no_grad():
         new_prediction = model(processed_image)
 
-    return new_prediction.argmax().item()
+    retStrings = {
+        10: '+', 11: '.', 12: '÷', 13: '=', 14: '×', 15: '-'
+    }
 
-
-print(process_image('test_images/div.png'))
-
-'''
-    10 - addition
-    11 - decimal
-    12 - division
-    13 - equal
-    14 - multiplication
-    15 - subtraction
-'''
+    if new_prediction.argmax().item() in retStrings:
+        return retStrings[new_prediction.argmax().item()]
+    else:
+        return new_prediction.argmax().item()
