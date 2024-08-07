@@ -25,7 +25,7 @@ def upload():
     image = Image.open(BytesIO(base64.b64decode(image_data)))
 
     # Save as temporary
-    with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
+    with tempfile.NamedTemporaryFile(suffix='.jpg', delete=False) as temp_file:
         image_path = temp_file.name
         image.save(image_path)
 

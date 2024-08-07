@@ -1,21 +1,21 @@
-var expression = '';
+var expression = [];
 
 function appendExpression(value) {
-    expression += value;
-    showExpression();
+
 }
 
 function showExpression() {
-    document.getElementById("expression").innerHTML = expression;
+
 }
 
 function undo() {
-    expression = expression.slice(0, -2);
-    showExpression();
+
+    showExpression()
 }
 
 function clearExpression() {
-    showExpression();
+
+    showExpression()
 }
 
 function solve() {
