@@ -70,10 +70,10 @@ def process_image(image_path):
         new_prediction = model(processed_image)
 
     retStrings = {
-        10: '+', 11: '.', 12: '÷', 13: '=', 14: '×', 15: '-'
+        10: '+', 11: '.', 12: '/', 13: '=', 14: '*', 15: '-'
     }
 
     if new_prediction.argmax().item() in retStrings:
         return retStrings[new_prediction.argmax().item()]
     else:
-        return new_prediction.argmax().item()
+        return str(new_prediction.argmax().item())

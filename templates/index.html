@@ -13,14 +13,14 @@
 <div class="grid-container">
     <div class="header">Handwritten Calculator</div>
     <div class="expression" id="expression"></div>
-    <div class="answer"></div>
+    <div class="answer" id="answer"></div>
 
     <div class="input">
         <canvas id="drawPlace" height="250" width="250"></canvas>
         <script src="{{ url_for('static', filename='js/draw_functions.js') }}"></script>
     </div>
 
-    <div class="undo button" onclick="undo()">Undo</div>
+    <div class="undo button" onclick="undo()">DEL</div>
     <div class="clear button" onclick="clearExpression()">CE</div>
     <div class="solve button" onclick="solve()">Solve</div>
 </div>

@@ -24,8 +24,8 @@ def upload():
     # Decode and open image
     image = Image.open(BytesIO(base64.b64decode(image_data)))
 
-    # Save as temporary
-    with tempfile.NamedTemporaryFile(suffix='.jpg', delete=False) as temp_file:
+    # Save as temporary, must be PNG don't know why
+    with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
         image_path = temp_file.name
         image.save(image_path)
 
