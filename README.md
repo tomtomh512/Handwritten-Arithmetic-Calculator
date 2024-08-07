@@ -5,6 +5,8 @@ A calculator where users can draw numbers and operations to form an arithmetic e
   <li> Dataset provided by <a href="https://www.kaggle.com/datasets/sagyamthapa/handwritten-math-symbols">Handwritten Math Symbols - Sagyam Thapa</a> </li>
 </ul>
 
+<img src="calc_demo.gif">
+
 <h2>Features</h2>
 <ul>
   <li> Users can use their mouse to draw on a canvas element to form a number or arithmetic operation </li>
@@ -14,6 +16,7 @@ A calculator where users can draw numbers and operations to form an arithmetic e
 
 <h2>Future Implementation Goals</h2>
 <ul>
+  <li> Add touch functionality for mobile-use </li>
   <li> Ability to write out multi-digit numbers </li>
   <li> Ability to write out entire expressions </li>
   <li> Solve for variables </li>
