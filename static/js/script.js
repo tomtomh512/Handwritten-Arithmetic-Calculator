@@ -24,7 +24,11 @@ function showExpression() {
         }
     }
 
-    document.getElementById("expression").innerHTML = build;
+    if (expressionString.length === 0) {
+        document.getElementById("expression").innerHTML = 'Draw a number below';
+    } else {
+        document.getElementById("expression").innerHTML = build;
+    }
 }
 
 function undo() {
@@ -35,12 +39,13 @@ function undo() {
     }
 
     expressionString = expressionString.substring(0, expressionString.length - 1);
-    showExpression()
+    showExpression();
 }
 
 function clearExpression() {
     expressionString = '';
-    showExpression()
+    document.getElementById("answer").innerHTML = ''
+    showExpression();
 }
 
 function solve() {
