@@ -10,34 +10,30 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 <body>
+    <div class="grid-container">
+        <div class="header">Handwritten Calculator</div>
+        <div class="expression" id="expression"> Draw a number below </div>
+        <div class="answer" id="answer"></div>
 
-    <section>
-        <div class="grid-container">
-            <div class="header">Handwritten Calculator</div>
-            <div class="expression" id="expression"> Draw a number below </div>
-            <div class="answer" id="answer"></div>
-
-            <div class="input">
-                <canvas id="drawPlace" height="250" width="250"></canvas>
-                <script src="{{ url_for('static', filename='js/draw_functions.js') }}"></script>
-            </div>
-
-            <div class="undo button" onclick="undo()">DEL</div>
-            <div class="clear button" onclick="clearExpression()">CE</div>
-            <div class="solve button" onclick="solve()">Solve</div>
+        <div class="input">
+            <canvas id="drawPlace" height="250" width="250"></canvas>
+            <script src="{{ url_for('static', filename='js/draw_functions.js') }}"></script>
         </div>
 
-        <div class="instructions">
-            <h3> Thomas Hsu | <a href="https://github.com/tomtomh512/Handwritten-Arithmetic-Calculator" target="_blank"> Github </a> </h3>
-            <h3> Instructions: </h3>
-            <ul>
-                <li> Use +, -, ×, and ÷ </li>
-                <li> Decimals allowed </li>
-                <li> Enter single digits at a time </li>
-            </ul>
-        </div>
+        <div class="undo button" onclick="undo()">DEL</div>
+        <div class="clear button" onclick="clearExpression()">CE</div>
+        <div class="solve button" onclick="solve()">Solve</div>
+    </div>
 
-    </section>
+<!--    <div class="instructions">-->
+<!--        <h3> Thomas Hsu | <a href="https://github.com/tomtomh512/Handwritten-Arithmetic-Calculator" target="_blank"> Github </a> </h3>-->
+<!--        <h3> Instructions: </h3>-->
+<!--        <ul>-->
+<!--            <li> Use +, -, ×, and ÷ </li>-->
+<!--            <li> Decimals allowed </li>-->
+<!--            <li> Enter single digits at a time </li>-->
+<!--        </ul>-->
+<!--    </div>-->
 
 </body>
 </html>

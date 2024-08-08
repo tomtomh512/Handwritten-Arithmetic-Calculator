@@ -6,9 +6,6 @@ body {
     /*background-image: linear-gradient(to bottom, #16314f, #737373);*/
     /*background-attachment: fixed;*/
     padding: 30px;
-}
-
-body > section {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center;     /* Center vertically */

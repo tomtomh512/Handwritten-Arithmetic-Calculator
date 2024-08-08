@@ -1,11 +1,9 @@
 let expressionString = '';
 
 function appendExpression(value) {
-    let answerElement = document.getElementById("answer");
-
-    if (answerElement.textContent.trim() !== '') {
+    if (document.getElementById("answer").textContent.trim() !== '') {
         expressionString = '';
-        answerElement.innerHTML = '';
+        document.getElementById("answer").innerHTML = '';
     }
 
     expressionString += value;
@@ -32,10 +30,8 @@ function showExpression() {
 }
 
 function undo() {
-    let answerElement = document.getElementById("answer");
-
-    if (answerElement.textContent.trim() !== '') {
-        answerElement.innerHTML = '';
+    if (document.getElementById("answer").textContent.trim() !== '') {
+        document.getElementById("answer").innerHTML = '';
     }
 
     expressionString = expressionString.substring(0, expressionString.length - 1);
@@ -50,7 +46,7 @@ function clearExpression() {
 
 function solve() {
     try {
-        document.getElementById("answer").innerHTML = eval(expressionString);
+        document.getElementById("answer").innerHTML = "= " + eval(expressionString);
     } catch (error) {
         document.getElementById("answer").innerHTML = 'ERROR';
     }

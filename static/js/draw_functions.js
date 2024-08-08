@@ -1,5 +1,5 @@
 /*
-    taken from https://codepen.io/julio_ok/pen/ozpqGO
+    Taken from https://codepen.io/julio_ok/pen/ozpqGO
 */
 
 var square = document.getElementById("drawPlace");
@@ -16,25 +16,54 @@ paper.fillRect(0, 0, square.width, square.height);
 square.addEventListener("mousedown", startDrawing);
 square.addEventListener("mousemove", drawLine);
 square.addEventListener("mouseup", stopDrawing);
+square.addEventListener("touchstart", startDrawing, { passive: false });
+square.addEventListener("touchmove", drawLine, { passive: false });
+square.addEventListener("touchend", stopDrawing, { passive: false });
 
-function startDrawing(eventvs01) {
+function startDrawing(event) {
     pressedMouse = true;
-    x = eventvs01.offsetX;
-    y = eventvs01.offsetY;
-}
+    if (event.touches === undefined) {
+        x = event.offsetX;
+        y = event.offsetY;
 
-function drawLine(eventvs02) {
-    if (pressedMouse) {
-        document.getElementById("drawPlace").style.cursor = "crosshair";
-        var xM = eventvs02.offsetX;
-        var yM = eventvs02.offsetY;
-        drawing_line(colorLine, x, y, xM, yM, paper);
-        x = xM;
-        y = yM;
+    } else {
+        event.preventDefault(); // Prevent default touch behavior
+        var touch = event.touches[0];
+        x = touch.pageX - square.offsetLeft;
+        y = touch.pageY - square.offsetTop;
+
     }
 }
 
-function stopDrawing() {
+function drawLine(event) {
+    if (pressedMouse) {
+        if (event.touches === undefined) {
+            document.getElementById("drawPlace").style.cursor = "crosshair";
+            var xM = event.offsetX;
+            var yM = event.offsetY;
+            drawing_line(colorLine, x, y, xM, yM, paper);
+            x = xM;
+            y = yM;
+
+        } else {
+            event.preventDefault();
+            document.getElementById("drawPlace").style.cursor = "crosshair";
+            var touch = event.touches[0];
+            var xM = touch.pageX - square.offsetLeft;
+            var yM = touch.pageY - square.offsetTop;
+            drawing_line(colorLine, x, y, xM, yM, paper);
+            x = xM;
+            y = yM;
+
+        }
+    }
+}
+
+function stopDrawing(event) {
+    if (event.touches !== undefined) {
+        event.preventDefault();
+    }
+
     pressedMouse = false;
     document.getElementById("drawPlace").style.cursor = "default";
 

@@ -16,10 +16,9 @@ A calculator where users can draw numbers and operations to form an arithmetic e
 
 <h2>Future Implementation Goals</h2>
 <ul>
-  <li> Add touch functionality for mobile-use </li>
   <li> Ability to write out multi-digit numbers </li>
   <li> Ability to write out entire expressions </li>
-  <li> Solve for variables </li>
+  <li> Implement toBlob() instead of toDataURL() </li>
 </ul>
 
 <h2>Known Issues</h2>
