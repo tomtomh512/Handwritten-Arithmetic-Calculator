@@ -9,7 +9,7 @@ A calculator where users can draw numbers and operations to form an arithmetic e
 
 <h2>Features</h2>
 <ul>
-  <li> Users can use their mouse to draw on a canvas element to form a number or arithmetic operation </li>
+  <li> Users can draw on a canvas element to form a number or arithmetic operation </li>
   <li> To solve the expression, users can draw an equal sign or click 'Solve' </li>
   <li> Users also have the ability to undo and clear entry </li>
 </ul>
