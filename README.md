@@ -16,12 +16,7 @@ A calculator where users can draw numbers and operations to form an arithmetic e
 
 <h2>Future Implementation Goals</h2>
 <ul>
-  <li> Ability to write out multi-digit numbers </li>
-  <li> Ability to write out entire expressions </li>
+  <li> Ability to write out whole expressions </li>
   <li> Implement toBlob() instead of toDataURL() </li>
-</ul>
-
-<h2>Known Issues</h2>
-<ul>
-  <li> Current version uses eval(), which is unsecure </li>
+  <li> Current version uses eval(), which is unsecure and may output inaccuracies </li>
 </ul>

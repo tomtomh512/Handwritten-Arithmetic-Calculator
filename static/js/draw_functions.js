@@ -8,8 +8,9 @@ var pressedMouse = false;
 var x;
 var y;
 var colorLine = "black";
-var timeout;
+var timeoutID;
 
+// Set background to white
 paper.fillStyle = "#ffffff";
 paper.fillRect(0, 0, square.width, square.height);
 
@@ -31,8 +32,11 @@ function startDrawing(event) {
         var touch = event.touches[0];
         x = touch.pageX - square.offsetLeft;
         y = touch.pageY - square.offsetTop;
-
     }
+
+    // if there exists a current timeout session, clear it
+    // stopDrawing will create new session for current stroke
+    clearTimeout(timeoutID);
 }
 
 function drawLine(event) {
@@ -54,7 +58,6 @@ function drawLine(event) {
             drawing_line(colorLine, x, y, xM, yM, paper);
             x = xM;
             y = yM;
-
         }
     }
 }
@@ -68,8 +71,7 @@ function stopDrawing(event) {
     document.getElementById("drawPlace").style.cursor = "default";
 
     // Start a timeout to detect when the user has stopped drawing
-    clearTimeout(timeout);
-    timeout = setTimeout(generateImage, 1000);
+    timeoutID = setTimeout(generateImage, 1000);
 }
 
 function drawing_line(color, x_start, y_start, x_end, y_end, board) {
@@ -85,6 +87,7 @@ function drawing_line(color, x_start, y_start, x_end, y_end, board) {
 function clearCanvas() {
     // Clear the entire canvas by setting the width and height to the same as the canvas element's width and height
     paper.clearRect(0, 0, square.width, square.height);
+    // Set background to white
     paper.fillStyle = "#ffffff";
     paper.fillRect(0, 0, square.width, square.height);
 }
