@@ -2,24 +2,24 @@
     Taken from https://codepen.io/julio_ok/pen/ozpqGO
 */
 
-var square = document.getElementById("drawPlace");
-var paper = square.getContext("2d");
-var pressedMouse = false;
-var x;
-var y;
-var colorLine = "black";
-var timeoutID;
+let canvas = document.getElementById("drawPlace");
+let ctx = canvas.getContext("2d");
+let pressedMouse = false;
+let x;
+let y;
+let colorLine = "black";
+let timeoutID;
 
 // Set background to white
-paper.fillStyle = "#ffffff";
-paper.fillRect(0, 0, square.width, square.height);
+ctx.fillStyle = "#ffffff";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-square.addEventListener("mousedown", startDrawing);
-square.addEventListener("mousemove", drawLine);
-square.addEventListener("mouseup", stopDrawing);
-square.addEventListener("touchstart", startDrawing, { passive: false });
-square.addEventListener("touchmove", drawLine, { passive: false });
-square.addEventListener("touchend", stopDrawing, { passive: false });
+canvas.addEventListener("mousedown", startDrawing);
+canvas.addEventListener("mousemove", drawLine);
+canvas.addEventListener("mouseup", stopDrawing);
+canvas.addEventListener("touchstart", startDrawing, { passive: false });
+canvas.addEventListener("touchmove", drawLine, { passive: false });
+canvas.addEventListener("touchend", stopDrawing, { passive: false });
 
 function startDrawing(event) {
     pressedMouse = true;
@@ -29,9 +29,9 @@ function startDrawing(event) {
 
     } else {
         event.preventDefault(); // Prevent default touch behavior
-        var touch = event.touches[0];
-        x = touch.pageX - square.offsetLeft;
-        y = touch.pageY - square.offsetTop;
+        let touch = event.touches[0];
+        x = touch.pageX - canvas.offsetLeft;
+        y = touch.pageY - canvas.offsetTop;
     }
 
     // if there exists a current timeout session, clear it
@@ -43,19 +43,19 @@ function drawLine(event) {
     if (pressedMouse) {
         if (event.touches === undefined) {
             document.getElementById("drawPlace").style.cursor = "crosshair";
-            var xM = event.offsetX;
-            var yM = event.offsetY;
-            drawing_line(colorLine, x, y, xM, yM, paper);
+            let xM = event.offsetX;
+            let yM = event.offsetY;
+            drawing_line(colorLine, x, y, xM, yM, ctx);
             x = xM;
             y = yM;
 
         } else {
             event.preventDefault();
             document.getElementById("drawPlace").style.cursor = "crosshair";
-            var touch = event.touches[0];
-            var xM = touch.pageX - square.offsetLeft;
-            var yM = touch.pageY - square.offsetTop;
-            drawing_line(colorLine, x, y, xM, yM, paper);
+            let touch = event.touches[0];
+            let xM = touch.pageX - canvas.offsetLeft;
+            let yM = touch.pageY - canvas.offsetTop;
+            drawing_line(colorLine, x, y, xM, yM, ctx);
             x = xM;
             y = yM;
         }
@@ -86,33 +86,39 @@ function drawing_line(color, x_start, y_start, x_end, y_end, board) {
 
 function clearCanvas() {
     // Clear the entire canvas by setting the width and height to the same as the canvas element's width and height
-    paper.clearRect(0, 0, square.width, square.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     // Set background to white
-    paper.fillStyle = "#ffffff";
-    paper.fillRect(0, 0, square.width, square.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function generateImage() {
-    var url = square.toDataURL('image/jpg');
+    canvas.toBlob((blob) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
 
-    fetch('/upload', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            imageBase64: url,
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.output == '=') {
-                solve();
-            } else {
-                appendExpression(data.output);
-            }
-        })
+        reader.onloadend = () => {
+            const url = reader.result;
+
+            fetch('/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    imageBase64: url,
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.output === '=') {
+                        solve();
+                    } else {
+                        appendExpression(data.output);
+                    }
+                })
+        }
+    });
 
     clearCanvas();
-    showExpression();
 }
